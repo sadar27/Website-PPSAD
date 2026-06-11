@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Formulir Pendaftaran Santri Baru</title>
+
+<style>
+body {
+  font-family: 'Gill Sans', sans-serif;
+  background-color: #c6dffd;
+}
+
+/* Container */
+.container {
+  width: 420px;
+  margin: 50px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Judul */
+h2 {
+  text-align: center;
+  color: #1e63c6;
+}
+
+/* Label */
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input */
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.3s;
+}
+
+/* Efek saat diklik */
+input:focus, select:focus, textarea:focus {
+  border-color: #1e63c6;
+  box-shadow: 0 0 5px rgba(30,99,198,0.3);
+}
+
+/* Tombol  */
+.btn-daftar {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background-color: #1e63c6;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px; /* bentuk oval */
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-daftar:hover {
+  background-color: #174ea6;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container" id="form-daftar">
+  <h2>Formulir Pendaftaran</h2>
+
+  <form>
+    <label>Nama Lengkap</label>
+    <input type="text" required>
+
+    <label>NISN</label>
+    <input type="text" required>
+
+    <label>No. KK</label>
+    <input type="text" required>
+
+    <label>No. NIK</label>
+    <input type="text" required>
+
+    <label>Tempat Lahir</label>
+    <input type="text" required>
+
+    <label>Tanggal Lahir</label>
+    <input type="date" required>
+
+    <label>Jenis Kelamin</label>
+    <select required>
+      <option value="">-- Pilih --</option>
+      <option>Laki-laki</option>
+      <option>Perempuan</option>
+    </select>
+
+    <label>Alamat</label>
+    <textarea rows="3" required></textarea>
+
+    <button class="btn-daftar">Daftar Sekarang</button>
+  </form>
+</div>
+
+</body>
+</html>
