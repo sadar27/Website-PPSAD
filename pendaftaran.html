@@ -76,38 +76,6 @@ input:focus, select:focus, textarea:focus {
 
 <div class="container" id="form-daftar">
   <h2>Formulir Pendaftaran</h2>
-
-  <form>
-    <label>Nama Lengkap</label>
-    <input type="text" required>
-
-    <label>NISN</label>
-    <input type="text" required>
-
-    <label>No. KK</label>
-    <input type="text" required>
-
-    <label>No. NIK</label>
-    <input type="text" required>
-
-    <label>Tempat Lahir</label>
-    <input type="text" required>
-
-    <label>Tanggal Lahir</label>
-    <input type="date" required>
-
-    <label>Jenis Kelamin</label>
-    <select required>
-      <option value="">-- Pilih --</option>
-      <option>Laki-laki</option>
-      <option>Perempuan</option>
-    </select>
-
-    <label>Alamat</label>
-    <textarea rows="3" required></textarea>
-
-    <button class="btn-daftar">Daftar Sekarang</button>
-  </form>
 </div>
 
 <form id="formSantri">
@@ -141,16 +109,19 @@ form.addEventListener("submit", e => {
     nik: form.nik.value,
     kk: form.kk.value,
     ttl: form.ttl.value,
-    jk: form.jk.value,
+    jenis_kelamin: form.jenis_kelamin.value,
     alamat: form.alamat.value
   };
 
   fetch(scriptURL, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(data)
   })
   .then(response => {
-    alert("🎉 Data berhasil dikirim! Terima kasih sudah mendaftar.");
+    alert("🎉 Data berhasil dikirim!");
     form.reset();
   })
   .catch(error => {
