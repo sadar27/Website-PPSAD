@@ -109,9 +109,18 @@ input:focus, select:focus, textarea:focus {
     <button class="btn-daftar">Daftar Sekarang</button>
   </form>
 </div>
-<script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxi7RhpXGhBO5UHYBzNAHTVii-XFP0rplCnDl_DL3mlsYVomm2oOHfz8E6eXy4TooKO/exec";
 
+  <select name="jenis_kelamin" required>
+    <option value="">Pilih Jenis Kelamin</option>
+    <option value="Laki-laki">Laki-laki</option>
+    <option value="Perempuan">Perempuan</option>
+  </select>
+
+  <textarea name="alamat" placeholder="Alamat" required></textarea>
+
+  <button type="submit">Daftar</button>
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbxi7RhpXGhBO5UHYBzNAHTVii-XFP0rplCnDl_DL3mlsYVomm2oOHfz8E6eXy4TooKO/exec"
 const form = document.getElementById("formSantri");
 
 form.addEventListener("submit", e => {
