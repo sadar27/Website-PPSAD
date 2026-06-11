@@ -74,41 +74,91 @@ input:focus, select:focus, textarea:focus {
 </head>
 <body>
 
-<div class="container" id="form-daftar">
+<body>
+
+<div class="container">
   <h2>Formulir Pendaftaran</h2>
 
-  <form>
+  <form id="formSantri">
+
     <label>Nama Lengkap</label>
-    <input type="text" required>
+    <input type="text" name="nama" required>
 
     <label>NISN</label>
-    <input type="text" required>
+    <input type="text" name="nisn" required>
 
     <label>No. KK</label>
-    <input type="text" required>
+    <input type="text" name="kk" required>
 
     <label>No. NIK</label>
-    <input type="text" required>
+    <input type="text" name="nik" required>
 
-    <label>Tempat Lahir</label>
-    <input type="text" required>
-
-    <label>Tanggal Lahir</label>
-    <input type="date" required>
+    <label>Tempat, Tanggal Lahir</label>
+    <input type="text" name="ttl" required>
 
     <label>Jenis Kelamin</label>
-    <select required>
+    <select name="jk" required>
       <option value="">-- Pilih --</option>
-      <option>Laki-laki</option>
-      <option>Perempuan</option>
+      <option value="Laki-laki">Laki-laki</option>
+      <option value="Perempuan">Perempuan</option>
     </select>
 
     <label>Alamat</label>
-    <textarea rows="3" required></textarea>
+    <textarea name="alamat" rows="3" required></textarea>
 
-    <button class="btn-daftar">Daftar Sekarang</button>
+    <button type="submit" class="btn-daftar">Daftar Sekarang</button>
+
   </form>
 </div>
 
+<form id="formSantri">
+  <input type="text" name="nama" placeholder="Nama Lengkap" required>
+  <input type="text" name="nisn" placeholder="NISN" required>
+  <input type="text" name="nik" placeholder="NIK" required>
+  <input type="text" name="kk" placeholder="No KK" required>
+  <input type="text" name="ttl" placeholder="Tempat, Tanggal Lahir" required>
+
+  <select name="jk" required>
+    <option value="">Pilih Jenis Kelamin</option>
+    <option value="Laki-laki">Laki-laki</option>
+    <option value="Perempuan">Perempuan</option>
+  </select>
+
+  <textarea name="alamat" placeholder="Alamat" required></textarea>
+
+  <button type="submit">Daftar</button>
+</form>
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbxi7RhpXGhBO5UHYBzNAHTVii-XFP0rplCnDl_DL3mlsYVomm2oOHfz8E6eXy4TooKO/exec";
+
+const form = document.getElementById("formSantri");
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const data = {
+    nama: form.nama.value,
+    nisn: form.nisn.value,
+    nik: form.nik.value,
+    kk: form.kk.value,
+    ttl: form.ttl.value,
+    jk: form.jk.value,
+    alamat: form.alamat.value
+  };
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    alert("🎉 Data berhasil dikirim! Terima kasih sudah mendaftar.");
+    form.reset();
+  })
+  .catch(error => {
+    alert("❌ Gagal mengirim data");
+    console.error(error);
+  });
+});
+</script>
 </body>
 </html>
