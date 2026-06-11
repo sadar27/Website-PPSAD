@@ -77,38 +77,12 @@ input:focus, select:focus, textarea:focus {
 <div class="container" id="form-daftar">
   <h2>Formulir Pendaftaran</h2>
 
-  <form>
-    <label>Nama Lengkap</label>
-    <input type="text" required>
-
-    <label>NISN</label>
-    <input type="text" required>
-
-    <label>No. KK</label>
-    <input type="text" required>
-
-    <label>No. NIK</label>
-    <input type="text" required>
-
-    <label>Tempat Lahir</label>
-    <input type="text" required>
-
-    <label>Tanggal Lahir</label>
-    <input type="date" required>
-
-    <label>Jenis Kelamin</label>
-    <select required>
-      <option value="">-- Pilih --</option>
-      <option>Laki-laki</option>
-      <option>Perempuan</option>
-    </select>
-
-    <label>Alamat</label>
-    <textarea rows="3" required></textarea>
-
-    <button class="btn-daftar">Daftar Sekarang</button>
-  </form>
-</div>
+<form id="formSantri">
+  <input type="text" name="nama" placeholder="Nama Lengkap" required>
+  <input type="text" name="nisn" placeholder="NISN" required>
+  <input type="text" name="nik" placeholder="NIK" required>
+  <input type="text" name="kk" placeholder="No KK" required>
+  <input type="text" name="ttl" placeholder="Tempat, Tanggal Lahir" required>
 
   <select name="jenis_kelamin" required>
     <option value="">Pilih Jenis Kelamin</option>
@@ -119,8 +93,10 @@ input:focus, select:focus, textarea:focus {
   <textarea name="alamat" placeholder="Alamat" required></textarea>
 
   <button type="submit">Daftar</button>
+</form>
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxi7RhpXGhBO5UHYBzNAHTVii-XFP0rplCnDl_DL3mlsYVomm2oOHfz8E6eXy4TooKO/exec"
+const scriptURL = "https://script.google.com/macros/s/AKfycbxi7RhpXGhBO5UHYBzNAHTVii-XFP0rplCnDl_DL3mlsYVomm2oOHfz8E6eXy4TooKO/exec";
+
 const form = document.getElementById("formSantri");
 
 form.addEventListener("submit", e => {
