@@ -79,25 +79,25 @@ input:focus, select:focus, textarea:focus {
 
  <form id="formSantri">
 
-  <input type="text" id="nama" placeholder="Nama Lengkap" required>
+  <input type="text" id="nama" name="nama" placeholder="Nama Lengkap" required>
 
-  <input type="text" id="nisn" placeholder="NISN" required>
+  <input type="text" id="nisn" name="nisn" placeholder="NISN" required>
 
-  <input type="text" id="kk" placeholder="No KK" required>
+  <input type="text" id="kk" name="kk" placeholder="No KK" required>
 
-  <input type="text" id="nik" placeholder="No NIK" required>
+  <input type="text" id="nik" name="nik" placeholder="No NIK" required>
 
-  <input type="text" id="tempat_lahir" placeholder="Tempat Lahir" required>
+  <input type="text" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir" required>
 
-  <input type="date" id="tanggal_lahir" required>
+  <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
 
-  <select id="jenis_kelamin" required>
+  <select id="jenis_kelamin" name="jenis_kelamin" required>
     <option value="">-- Pilih --</option>
     <option value="Putra">Putra</option>
     <option value="Putri">Putri</option>
   </select>
 
-  <textarea id="alamat" placeholder="Alamat" required></textarea>
+  <textarea id="alamat" name="alamat" placeholder="Alamat" required></textarea>
 
   <button type="submit">Daftar Sekarang</button>
 
@@ -108,37 +108,20 @@ const form = document.getElementById("formSantri");
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
-  // AMBIL DATA (PASTIKAN ID SAMA DENGAN HTML)
-  const data = {
-    nama: document.getElementById("nama").value,
-    nisn: document.getElementById("nisn").value,
-    kk: document.getElementById("kk").value,
-    nik: document.getElementById("nik").value,
-    tempat_lahir: document.getElementById("tempat_lahir").value,
-    tanggal_lahir: document.getElementById("tanggal_lahir").value,
-    jenis_kelamin: document.getElementById("jenis_kelamin").value,
-    alamat: document.getElementById("alamat").value
-  };
-
-  console.log("DATA:", data); // debug
+  const formData = new FormData(form);
 
   fetch("https://script.google.com/macros/s/AKfycbxi7RhpXGhBO5UHYBzNAHTVii-XFP0rplCnDl_DL3mlsYVomm2oOHfz8E6eXy4TooKO/exec", {
     method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json"
-    }
+    mode: "no-cors", // 🔥 FIX CORS
+    body: formData
   })
-  .then(res => res.text())
-  .then(res => {
+  .then(() => {
     alert("Pendaftaran berhasil!");
     form.reset();
   })
-  .catch(err => {
+  .catch(() => {
     alert("Gagal mengirim!");
-    console.error(err);
   });
-
 });
 </script>
 </body>
