@@ -77,86 +77,68 @@ input:focus, select:focus, textarea:focus {
 <div class="container" id="form-daftar">
   <h2>Formulir Pendaftaran</h2>
 
-  <form>
-    <label>Nama Lengkap</label>
-    <input type="text" required>
+ <form id="formSantri">
 
-    <label>NISN</label>
-    <input type="text" required>
+  <input type="text" id="nama" placeholder="Nama Lengkap" required>
 
-    <label>No. KK</label>
-    <input type="text" required>
+  <input type="text" id="nisn" placeholder="NISN" required>
 
-    <label>No. NIK</label>
-    <input type="text" required>
+  <input type="text" id="kk" placeholder="No KK" required>
 
-    <label>Tempat Lahir</label>
-    <input type="text" required>
+  <input type="text" id="nik" placeholder="No NIK" required>
 
-    <label>Tanggal Lahir</label>
-    <input type="date" required>
+  <input type="text" id="tempat_lahir" placeholder="Tempat Lahir" required>
 
-    <label>Jenis Kelamin</label>
-    <select required>
-      <option value="">-- Pilih --</option>
-      <option>Laki-laki</option>
-      <option>Perempuan</option>
-    </select>
+  <input type="date" id="tanggal_lahir" required>
 
-    <label>Alamat</label>
-    <textarea rows="3" required></textarea>
-
-    <button class="btn-daftar">Daftar Sekarang</button>
-  </form>
-</div>
-
-<form id="formSantri">
-  <input type="text" name="nama" placeholder="Nama Lengkap" required>
-  <input type="text" name="nisn" placeholder="NISN" required>
-  <input type="text" name="nik" placeholder="NIK" required>
-  <input type="text" name="kk" placeholder="No KK" required>
-  <input type="text" name="ttl" placeholder="Tempat, Tanggal Lahir" required>
-
-  <select name="jenis_kelamin" required>
-    <option value="">Pilih Jenis Kelamin</option>
-    <option value="Laki-laki">Laki-laki</option>
-    <option value="Perempuan">Perempuan</option>
+  <select id="jenis_kelamin" required>
+    <option value="">-- Pilih --</option>
+    <option value="Putra">Putra</option>
+    <option value="Putri">Putri</option>
   </select>
 
-  <textarea name="alamat" placeholder="Alamat" required></textarea>
+  <textarea id="alamat" placeholder="Alamat" required></textarea>
 
-  <button type="submit">Daftar</button>
+  <button type="submit">Daftar Sekarang</button>
+
 </form>
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxi7RhpXGhBO5UHYBzNAHTVii-XFP0rplCnDl_DL3mlsYVomm2oOHfz8E6eXy4TooKO/exec";
-
 const form = document.getElementById("formSantri");
 
-form.addEventListener("submit", e => {
+form.addEventListener("submit", function(e) {
   e.preventDefault();
 
+  // AMBIL DATA (PASTIKAN ID SAMA DENGAN HTML)
   const data = {
-    nama: form.nama.value,
-    nisn: form.nisn.value,
-    nik: form.nik.value,
-    kk: form.kk.value,
-    ttl: form.ttl.value,
-    jk: form.jk.value,
-    alamat: form.alamat.value
+    nama: document.getElementById("nama").value,
+    nisn: document.getElementById("nisn").value,
+    kk: document.getElementById("kk").value,
+    nik: document.getElementById("nik").value,
+    tempat_lahir: document.getElementById("tempat_lahir").value,
+    tanggal_lahir: document.getElementById("tanggal_lahir").value,
+    jenis_kelamin: document.getElementById("jenis_kelamin").value,
+    alamat: document.getElementById("alamat").value
   };
 
-  fetch(scriptURL, {
+  console.log("DATA:", data); // debug
+
+  fetch("https://script.google.com/macros/s/AKfycbxi7RhpXGhBO5UHYBzNAHTVii-XFP0rplCnDl_DL3mlsYVomm2oOHfz8E6eXy4TooKO/exec", {
     method: "POST",
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
   })
-  .then(response => {
-    alert("🎉 Data berhasil dikirim! Terima kasih sudah mendaftar.");
+  .then(res => res.text())
+  .then(res => {
+    alert("Pendaftaran berhasil!");
     form.reset();
   })
-  .catch(error => {
-    alert("❌ Gagal mengirim data");
-    console.error(error);
+  .catch(err => {
+    alert("Gagal mengirim!");
+    console.error(err);
   });
+
 });
 </script>
 </body>
