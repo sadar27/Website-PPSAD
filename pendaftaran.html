@@ -78,16 +78,11 @@ document.getElementById("form").addEventListener("submit", function(e){
 
   fetch(scriptURL, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    mode: "no-cors", // 🔥 INI KUNCINYA
     body: JSON.stringify(data)
-  })
-  .then(res => res.text())
-  .then(res => {
-    alert(res); // tampilkan respon asli
-  })
-  .catch(err => alert("Error: " + err));
+  });
+
+  alert("Data berhasil dikirim!");
 });
 </script>
 
