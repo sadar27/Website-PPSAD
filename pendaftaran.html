@@ -2,87 +2,188 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Pendaftaran Santri Baru</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pendaftaran Santri</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY */
 body {
-  font-family: Arial;
-  background: #cfe2ff;
-}
-
-.container {
-  width: 400px;
-  margin: 50px auto;
-  background: white;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #74b9ff, #6c5ce7);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
-  border-radius: 10px;
 }
 
+/* CONTAINER */
+.container {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  color: white;
+  animation: fadeIn 0.8s ease;
+}
+
+/* TITLE */
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* INPUT */
 input, select, textarea {
   width: 100%;
-  padding: 8px;
-  margin: 8px 0;
+  padding: 10px 12px;
+  margin: 6px 0;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
 }
 
+/* TEXTAREA */
+textarea {
+  resize: none;
+  height: 80px;
+}
+
+/* BUTTON */
 button {
   width: 100%;
-  padding: 10px;
-  background: #4CAF50;
-  color: white;
+  padding: 12px;
+  margin-top: 10px;
   border: none;
+  border-radius: 10px;
+  background: #0984e3;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
 }
+
+button:hover {
+  background: #74b9ff;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📱 MOBILE */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  input, select, textarea {
+    font-size: 13px;
+    padding: 9px;
+  }
+
+  button {
+    padding: 11px;
+  }
+}
+
+/* 📟 TABLET */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    max-width: 500px;
+  }
+}
+
+/* 💻 DESKTOP */
+@media (min-width: 769px) {
+  .container {
+    max-width: 420px;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="container">
-<h2>Pendaftaran Santri</h2>
+  <h2>🕌 Pendaftaran Santri</h2>
 
-<form id="form">
-<input type="text" id="nama" placeholder="Nama Lengkap" required>
-<input type="number" id="nisn" placeholder="NISN" required>
-<input type="number" id="kk" placeholder="No KK" required>
-<input type="number" id="nik" placeholder="NIK" required>
+  <form id="formSantri">
+    <input type="text" name="nama" placeholder="Nama Lengkap" required>
+    <input type="number" name="nisn" placeholder="NISN" required>
+    <input type="number" name="kk" placeholder="No KK" required>
+    <input type="number" name="nik" placeholder="NIK" required>
+    <input type="text" name="tempat_lahir" placeholder="Tempat Lahir" required>
+    <input type="date" name="tanggal_lahir" required>
 
-<input type="text" id="tempat_lahir" placeholder="Tempat Lahir" required>
-<input type="date" id="tanggal_lahir" required>
+    <select name="jenis_kelamin" required>
+      <option value="">Jenis Kelamin</option>
+      <option value="Putra">Putra</option>
+      <option value="Putri">Putri</option>
+    </select>
 
-<select id="jk">
-  <option value="Putra">Putra</option>
-  <option value="Putri">Putri</option>
-</select>
+    <textarea name="alamat" placeholder="Alamat" required></textarea>
 
-<textarea id="alamat" placeholder="Alamat"></textarea>
-
-<button type="submit">Daftar</button>
-</form>
+    <button type="submit">Daftar Sekarang</button>
+  </form>
 </div>
 
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbxCN7dGgJDGOmRozLXoD0AY6P0nYsvjYjQ-GXWoF2MWPdYP9r9UMeOTC6QFenbLsVtZ4A/exec";
 
-document.getElementById("form").addEventListener("submit", function(e){
+document.getElementById("formSantri").addEventListener("submit", function(e) {
   e.preventDefault();
 
+  const form = e.target;
+
   const data = {
-    nama: document.getElementById("nama").value,
-    nisn: document.getElementById("nisn").value,
-    kk: document.getElementById("kk").value,
-    nik: document.getElementById("nik").value,
-    tempat_lahir: document.getElementById("tempat_lahir").value,
-    tanggal_lahir: document.getElementById("tanggal_lahir").value,
-    jenis_kelamin: document.getElementById("jk").value,
-    alamat: document.getElementById("alamat").value
+    nama: form.nama.value,
+    nisn: form.nisn.value,
+    kk: form.kk.value,
+    nik: form.nik.value,
+    tempat_lahir: form.tempat_lahir.value,
+    tanggal_lahir: form.tanggal_lahir.value,
+    jenis_kelamin: form.jenis_kelamin.value,
+    alamat: form.alamat.value
   };
 
   fetch(scriptURL, {
     method: "POST",
-    mode: "no-cors", // 🔥 INI KUNCINYA
+    mode: "no-cors",
     body: JSON.stringify(data)
   });
 
-  alert("Data berhasil dikirim!");
+  alert("✅ Data berhasil dikirim!");
+  form.reset();
 });
 </script>
 
